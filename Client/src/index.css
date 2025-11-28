@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './auth.css';
+
+/* Global input visibility fix */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+  @apply bg-white text-gray-900 placeholder-gray-500;
+}
+
+/* Ensure input text is always visible */
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]) {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
+
+textarea {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
+
+select {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
+
+select option {
+  color: #111827 !important;
+  background-color: #ffffff !important;
+}
