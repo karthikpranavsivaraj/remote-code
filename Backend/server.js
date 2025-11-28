@@ -4,6 +4,11 @@ require('dotenv').config();
 const { connectMongoDB } = require('./database/mongodb');
 const app = express();
 const Port = process.env.PORT || 5000;
+
+// Vercel serverless function export
+if (process.env.VERCEL) {
+  module.exports = app;
+}
 const http = require("http");
 const { Server } = require("socket.io");
 const authRoutes = require("./routes/authRoutes");
@@ -12,6 +17,8 @@ const io = new Server(server, {
   cors: {
     origin: [
       "https://remote-code-collaboration-tool-lcvt.vercel.app",
+      "https://codecollab-frontend.vercel.app",
+      "https://codecollab-client.vercel.app",
       "http://localhost:3000",
       "http://localhost:3001",
       "http://172.20.10.8:3000",
@@ -269,6 +276,8 @@ connectMongoDB().then(success => {
   }
 });
 
-server.listen(Port, () => {
-  console.log(`Server started on port ${Port}`);
-});
+if (!process.env.VERCEL) {
+  server.listen(Port, () => {
+    console.log(`Server started on port ${Port}`);
+  });
+}

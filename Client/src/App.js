@@ -25,7 +25,7 @@ function App() {
     <div className="text-white">
       <Toaster position="top-right" />
       <Routes>
-        <Route path="/" element={<Layout><Homepage /></Layout>} />
+        <Route path="/" element={isAuthenticated ? <Navigate to="/dashboard" /> : <Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/dashboard" element={
